@@ -10,6 +10,6 @@ Stringy = NEON:github('belkworks', 'stringy')
 ## Usage
 Call **Stringy** to pretty print all passed parameters.  
 **Stringy**: `Stringy(...) -> nil`
-````lua
+```lua
 Stringy('hello', {world = true})
 ```
