@@ -107,18 +107,20 @@ stringify = function(any, ...)
   elseif 'function' == _exp_0 then
     return Chalk.light.blue("[" .. tostring(capFirst(tostring(any))) .. "]")
   elseif 'userdata' == _exp_0 then
-    return Chalk.light.cyan((function()
-      if typeof then
-        local t = typeof(any)
-        if t ~= 'userdata' then
-          return tostring(t) .. " " .. tostring(any)
-        else
-          return any
-        end
+    local t = typeof(any)
+    local str
+    if t ~= 'userdata' then
+      if t == 'Instance' then
+        local path = any:GetFullName()
+        local whitePath = Chalk.white("(" .. tostring(path) .. ")")
+        str = tostring(any.ClassName) .. " " .. tostring(any) .. " " .. tostring(whitePath)
       else
-        return any
+        str = tostring(t) .. " " .. tostring(any)
       end
-    end)())
+    else
+      str = any
+    end
+    return Chalk.light.cyan(str)
   elseif 'vector' == _exp_0 then
     return "Vector3(" .. tostring(Chalk.yellow(any)) .. ")"
   else

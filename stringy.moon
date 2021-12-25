@@ -73,12 +73,15 @@ stringify = (any, ...) ->
 		when 'function'
 			Chalk.light.blue "[#{capFirst tostring any}]"
 		when 'userdata'
-			Chalk.light.cyan if typeof
-				t = typeof any
-				if t != 'userdata'
-					"#{t} #{any}"
-				else any
+			t = typeof any
+			str = if t != 'userdata'
+				if t == 'Instance'
+					path = any\GetFullName!
+					whitePath = Chalk.white "(#{path})"
+					"#{any.ClassName} #{any} #{whitePath}"
+				else "#{t} #{any}"
 			else any
+			Chalk.light.cyan str
 
 		when 'vector'
 			"Vector3(#{Chalk.yellow any})"
