@@ -86,7 +86,7 @@ stringify = (any, ...) ->
 		when 'vector'
 			"Vector3(#{Chalk.yellow any})"
 
-		else Cyan.light.red any
+		else Chalk.light.red any
 
 (...) ->
 	Chalk.print unpack [stringify v for v in *{...}]

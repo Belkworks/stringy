@@ -124,7 +124,7 @@ stringify = function(any, ...)
   elseif 'vector' == _exp_0 then
     return "Vector3(" .. tostring(Chalk.yellow(any)) .. ")"
   else
-    return Cyan.light.red(any)
+    return Chalk.light.red(any)
   end
 end
 return function(...)
